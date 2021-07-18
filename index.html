@@ -14,7 +14,54 @@
 </head>
 
 <body>
-  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+  <script>
+  // Some random colors
+    const colors = ["#3CC157", "#2AA7FF", "#1B1B1B", "#FCBC0F", "#F85F36"];
+
+    const numBalls = 50;
+    const balls = [];
+
+    for (let i = 0; i < numBalls; i++) {
+      let ball = document.createElement("div");
+      ball.classList.add("ball");
+      ball.style.background = colors[Math.floor(Math.random() * colors.length)];
+      let left_pos = Math.floor(Math.random() * 40);
+      if (left_pos >= 20) {
+        left_pos = left_pos + 60;
+      }
+      ball.style.left = `${left_pos}vw`;
+      ball.style.top = `${Math.floor(Math.random() * 150)}vh`;
+      ball.style.transform = `scale(${Math.random()})`;
+      ball.style.width = `${Math.random()}em`;
+      ball.style.height = ball.style.width;
+
+      balls.push(ball);
+      document.body.append(ball);
+    }
+
+    // Keyframes
+    balls.forEach((el, i, ra) => {
+      let to = {
+        x: Math.random() * (i % 2 === 0 ? -11 : 11),
+        y: Math.random() * 12
+      };
+
+      let anim = el.animate(
+        [
+          { transform: "translate(0, 0)" },
+          { transform: `translate(${to.x}rem, ${to.y}rem)` }
+        ],
+        {
+          duration: (Math.random() + 1) * 2000, // random duration
+          direction: "alternate",
+          fill: "both",
+          iterations: Infinity,
+          easing: "ease-in-out"
+        }
+      );
+    });
+</script>
+  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;background-color:#f9f9f9;"><tbody>
     <tr style="padding:0px">
       <td style="padding:0px">
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
@@ -23,6 +70,7 @@
               <p style="text-align:center">
                 <name>Thomas EnXu Li</name>
               </p>
+
               <p>I am a fourth year <a href="https://engsci.utoronto.ca/program/what-is-engsci/">Engineering Science</a> student at the University of Toronto, majoring in <strong>Robotics Engineering</strong> and minoring in <strong>Artificial Intelligence</strong> and <strong>Business</strong> . I'm in the process of completing my Professional Experience Year (PEY) as a <strong>research intern</strong> at <a href="http://www.noahlab.com.hk/#/home">Huawei Noah's Ark Research Lab</a>, where I work on <strong>LiDAR semantic segmentation and panoptic segmentation systems for self-driving vehicles</strong>. This September, I will be joining <a href="https://www.trailab.utias.utoronto.ca">The Toronto Robotics and AI Laboratory (TRAIL)</a> to work on my undergrad thesis with the guidance of <a href="https://www.trailab.utias.utoronto.ca/stevenwaslander">Prof. Steven Waslander</a>.
               </p>
               <p>
@@ -147,6 +195,8 @@
               <br>
               manuscript submitted to <em>ICCV</em>, 2021
               <br>
+              paper coming soon...
+              <br>
               <p>We present a novel panoptic segmentation network using <a href="https://openaccess.thecvf.com/content/CVPR2021/papers/Cheng_AF2-S3Net_Attentive_Feature_Fusion_With_Adaptive_Feature_Selection_for_Sparse_CVPR_2021_paper.pdf">(AF)2-S3Net</a> as the semantic backbone and a GCNN to segment foreground points into instances. This approach outperforms the current state-of-the-art approaches, by a significant margin across public available datasets such as, nuScenes and SemanticPOSS, ranking 1st on the competitive public <a href="https://competitions.codalab.org/competitions/24025#results">SemanticKITTI</a> leaderboard competition upon publication.</p>
             </td>
           </tr>
@@ -156,9 +206,7 @@
               <img src="images/af2s3.gif" alt="clean-usnob" width="180" height="140">
             </td>
             <td style="padding:20px;width:75%;vertical-align:middle">
-              <a href="https://openaccess.thecvf.com/content/CVPR2021/papers/Cheng_AF2-S3Net_Attentive_Feature_Fusion_With_Adaptive_Feature_Selection_for_Sparse_CVPR_2021_paper.pdf">
-                <papertitle>(AF)2-S3Net: Attentive Feature Fusion with Adaptive Feature Selection for Sparse Semantic Segmentation Network</papertitle>
-              </a>
+              <papertitle>(AF)2-S3Net: Attentive Feature Fusion with Adaptive Feature Selection for Sparse Semantic Segmentation Network</papertitle>
               <br>
 							<a href="https://rancheng.github.io/about/">Ran Cheng</a>,
 							Ryan Razani,
@@ -166,7 +214,11 @@
               <strong>Enxu Li</strong>,
 							Bingbing Liu
               <br>
-              <em>CVPR</em>, 2021
+              <a href="http://cvpr2021.thecvf.com"><em>IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</em></a>,2021 | virtual
+              <br>
+              <a href="pdfs/AF2S3_CVPR.pdf">PDF</a>
+              /
+              <a href="https://arxiv.org/abs/2102.04530">arXiv</a>
               <br>
               <p>We present a novel multi- branch attentive feature fusion module in the encoder and a unique adaptive feature selection module with feature map re-weighting in the decoder. This method ranks 1st on both <a href="https://www.nuscenes.org/lidar-segmentation?externalData=all&mapData=all&modalities=Any">nuScenes-lidarseg</a> and <a href="https://competitions.codalab.org/competitions/20331#results">SemanticKITTI</a> Semantic Segmentation leaderboards upon publication.</p>
             </td>
@@ -225,6 +277,9 @@
           <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=5lT7tGELesewTHQZGh_SQyVkIxpVHQLsAJT50NzzwS0"></script>
       </div>
   </div>
+
+
+
 
 </body>
 
